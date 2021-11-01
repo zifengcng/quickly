@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
  */
 public class User {
 
+    // 2
     private static Logger log = LoggerFactory.getLogger(User.class);
 
     private Long id;
