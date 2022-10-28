@@ -1,4 +1,5 @@
-workspace.xml
-/.idea/
-/out/
+**/workspace.xml
+**/.idea/
+**/out/
 **/*.iml
+**/target/
