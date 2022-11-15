@@ -1,4 +1,4 @@
-package com.luchs.quickly.myspringboot;
+package com.lynx.quickly.myspringboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -5,12 +5,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.luchs.quickly</groupId>
+    <groupId>com.lynx.quickly</groupId>
     <artifactId>quickly</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.luchs.quickly</groupId>
+  <groupId>com.lynx.quickly</groupId>
   <artifactId>my-springboot</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
