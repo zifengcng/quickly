@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lynx.quickly.myspringboot.mapper.DmPostPermMapper">
+  <resultMap id="BaseResultMap" type="com.lynx.quickly.myspringboot.entity.DmPostPerm">
+    <!--@mbg.generated-->
+    <!--@Table dm_post_perm-->
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="post_ename" jdbcType="VARCHAR" property="postEname"/>
+    <result column="post_name" jdbcType="VARCHAR" property="postName"/>
+    <result column="post_type" jdbcType="TINYINT" property="postType"/>
+    <result column="data_role_id" jdbcType="VARCHAR" property="dataRoleId"/>
+    <result column="app_role_id" jdbcType="VARCHAR" property="appRoleId"/>
+    <result column="created_erp" jdbcType="VARCHAR" property="createdErp"/>
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
+    <result column="modified_erp" jdbcType="VARCHAR" property="modifiedErp"/>
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id,
+    post_ename,
+    post_name,
+    post_type,
+    data_role_id,
+    app_role_id,
+    created_erp,
+    created_time,
+    modified_erp,
+    modified_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List"/>
+    from dm_post_perm
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete
+    from dm_post_perm
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id"
+    parameterType="com.lynx.quickly.myspringboot.entity.DmPostPerm" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into dm_post_perm (post_ename, post_name, post_type,
+                              data_role_id, app_role_id, created_erp,
+                              created_time, modified_erp, modified_time)
+    values (#{postEname,jdbcType=VARCHAR}, #{postName,jdbcType=VARCHAR},
+            #{postType,jdbcType=TINYINT},
+            #{dataRoleId,jdbcType=VARCHAR}, #{appRoleId,jdbcType=VARCHAR},
+            #{createdErp,jdbcType=VARCHAR},
+            #{createdTime,jdbcType=TIMESTAMP}, #{modifiedErp,jdbcType=VARCHAR},
+            #{modifiedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id"
+    parameterType="com.lynx.quickly.myspringboot.entity.DmPostPerm" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into dm_post_perm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="postEname != null and postEname != ''">
+        post_ename,
+      </if>
+      <if test="postName != null and postName != ''">
+        post_name,
+      </if>
+      <if test="postType != null">
+        post_type,
+      </if>
+      <if test="dataRoleId != null and dataRoleId != ''">
+        data_role_id,
+      </if>
+      <if test="appRoleId != null and appRoleId != ''">
+        app_role_id,
+      </if>
+      <if test="createdErp != null and createdErp != ''">
+        created_erp,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="modifiedErp != null and modifiedErp != ''">
+        modified_erp,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="postEname != null and postEname != ''">
+        #{postEname,jdbcType=VARCHAR},
+      </if>
+      <if test="postName != null and postName != ''">
+        #{postName,jdbcType=VARCHAR},
+      </if>
+      <if test="postType != null">
+        #{postType,jdbcType=TINYINT},
+      </if>
+      <if test="dataRoleId != null and dataRoleId != ''">
+        #{dataRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="appRoleId != null and appRoleId != ''">
+        #{appRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdErp != null and createdErp != ''">
+        #{createdErp,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedErp != null and modifiedErp != ''">
+        #{modifiedErp,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective"
+    parameterType="com.lynx.quickly.myspringboot.entity.DmPostPerm">
+    <!--@mbg.generated-->
+    update dm_post_perm
+    <set>
+      <if test="postEname != null and postEname != ''">
+        post_ename = #{postEname,jdbcType=VARCHAR},
+      </if>
+      <if test="postName != null and postName != ''">
+        post_name = #{postName,jdbcType=VARCHAR},
+      </if>
+      <if test="postType != null">
+        post_type = #{postType,jdbcType=TINYINT},
+      </if>
+      <if test="dataRoleId != null and dataRoleId != ''">
+        data_role_id = #{dataRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="appRoleId != null and appRoleId != ''">
+        app_role_id = #{appRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdErp != null and createdErp != ''">
+        created_erp = #{createdErp,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedErp != null and modifiedErp != ''">
+        modified_erp = #{modifiedErp,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lynx.quickly.myspringboot.entity.DmPostPerm">
+    <!--@mbg.generated-->
+    update dm_post_perm
+    set post_ename    = #{postEname,jdbcType=VARCHAR},
+        post_name     = #{postName,jdbcType=VARCHAR},
+        post_type     = #{postType,jdbcType=TINYINT},
+        data_role_id  = #{dataRoleId,jdbcType=VARCHAR},
+        app_role_id   = #{appRoleId,jdbcType=VARCHAR},
+        created_erp   = #{createdErp,jdbcType=VARCHAR},
+        created_time  = #{createdTime,jdbcType=TIMESTAMP},
+        modified_erp  = #{modifiedErp,jdbcType=VARCHAR},
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from dm_post_perm
+  </select>
+</mapper>

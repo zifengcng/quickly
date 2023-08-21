@@ -5,8 +5,10 @@ import com.sun.org.slf4j.internal.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -48,17 +50,37 @@ public class User {
     public static void main(String[] args) {
         try {
             List<User> list = new ArrayList<>();
-            list.add(null);
+            Map<Long, List<User>> groupMap = list.stream()
+                .collect(Collectors.groupingBy(User::getId));
+            System.out.println(groupMap);
 
-            Map<Long, String> map = list.stream().filter(s -> s.getName() != null)
-                    .collect(Collectors.toMap(User::getId, User::getName, (k1, k2) -> k1));
+            User user = new User(1L, null);
+            list.add(user);
+//            remove(list);
+            System.out.println(list);
+
+            Map<Long, String> map = list.stream()
+                .collect(Collectors.toMap(User::getId, User::getName));
             System.out.println(map);
         } catch (Exception e) {
-            System.out.println("e:"+e);
-            System.out.println("Message:"+e.getMessage());
+            System.out.println("e:" + e);
+            System.out.println("Message:" + e.getMessage());
             System.out.println(Arrays.toString(e.getStackTrace()));
             // master
         }
+
+        Set<String> set = new LinkedHashSet<>();
+
+        set.add("a");
+        set.add("b");
+        set.add("c");
+        set.add("b");
+        set.add("c");
+        System.out.println(set);
+    }
+
+    public static void remove(List<User> users) {
+        users.removeIf(user -> user.getId() == 1L);
     }
 }
 
