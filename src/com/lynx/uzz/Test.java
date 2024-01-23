@@ -7,11 +7,13 @@ import com.alibaba.fastjson.JSONObject;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author wubaocheng1
@@ -20,29 +22,10 @@ import java.util.Objects;
 public class Test {
 
     public static void main(String[] args) {
-        int i1 = "getWarningTip".compareTo("getWarningTip_20220902");
-        System.out.println(i1 >= 0);
+        List<Integer> nums = Arrays.asList(1, 2, 1);
+        List<Integer> collect = nums.stream().distinct().collect(Collectors.toList());
+        System.out.println(collect);
 
-        try {
-            testApp();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        StringBuilder sb = new StringBuilder();
-        while (sb.length() <= 3001) {
-            sb.append("wubaocheng1,");
-        }
-        System.out.println(sb.substring(0, sb.length() - 1));
-
-        String postTypeC1C2Code = String.format("%s_%s", "organization1Code", null);
-        System.out.println(postTypeC1C2Code);
-
-        int i = Integer.parseInt("01");
-        System.out.println(i);
-        System.out.println(i);
-
-        testSort();
     }
 
     public static void testSort() {

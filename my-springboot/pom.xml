@@ -19,6 +19,8 @@
 
   <properties>
     <java.version>1.8</java.version>
+    <ducc.client.version>1.4.1</ducc.client.version>
+    <laf.binding.version>1.1.1</laf.binding.version>
   </properties>
 
   <dependencies>
