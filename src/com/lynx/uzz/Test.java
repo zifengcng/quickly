@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -22,6 +24,19 @@ import java.util.stream.Collectors;
 public class Test {
 
     public static void main(String[] args) {
+        long diffTime = -1000;
+        int diffDay = (int) (diffTime / (24 * 60 * 60 * 1000) + 1);
+        List<Integer> remindDays = Arrays.asList(30, 25, 20, 15, 10, 5, 4, 3, 2, 1);
+        remindDays.contains(diffDay);
+
+        String regex = "(?<=\\{\\{)(.+?)(?=}})";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(
+            "java.lang.RuntimeException: com.jd.oa.common.exception.BusinessException: {{com.jd.oa.common.exception.BusinessException: 流程中心不存在[anbaidong&]或此人已离职!!}}\n");
+        if (matcher.find()) {
+            System.out.println(matcher.group());
+        }
+
         List<Integer> nums = Arrays.asList(1, 2, 1);
         List<Integer> collect = nums.stream().distinct().collect(Collectors.toList());
         System.out.println(collect);
