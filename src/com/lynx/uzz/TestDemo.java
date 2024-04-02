@@ -3,6 +3,7 @@ package com.lynx.uzz;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.junit.Test;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -21,7 +22,14 @@ import java.util.stream.Collectors;
  * @author wubaocheng1
  * @date 2023/4/13 17:14
  */
-public class Test {
+public class TestDemo {
+
+    @Test
+    public void testSplit() {
+        String str = "( A && B ) || ( C && D )";
+        String[] split = str.split(" ");
+        System.out.println(JSON.toJSONString(split));
+    }
 
     public static void main(String[] args) {
         String str = "C1,3C;C1,家电;C1,时尚;C1,商超;C1,汽车;C1,跨境;C1,平台;C1,生态服务;职位,采销岗;职位,运营岗;职位,分析师岗;职位,营销岗;大促,大促;财务,损益;交易,交易;流量,来源;流量,搜索;流量,推荐;用户,PLUS;用户,品牌会员;用户,粉丝;营销,优惠券;营销,秒杀;营销,预售;供应链,供应链;服务,服务;体验,体验;实时,秒级;实时,分钟级;实时,十分钟;离线,T+1;离线,T+2;";
