@@ -24,6 +24,30 @@ import java.util.stream.Collectors;
 public class Test {
 
     public static void main(String[] args) {
+        String str = "C1,3C;C1,家电;C1,时尚;C1,商超;C1,汽车;C1,跨境;C1,平台;C1,生态服务;职位,采销岗;职位,运营岗;职位,分析师岗;职位,营销岗;大促,大促;财务,损益;交易,交易;流量,来源;流量,搜索;流量,推荐;用户,PLUS;用户,品牌会员;用户,粉丝;营销,优惠券;营销,秒杀;营销,预售;供应链,供应链;服务,服务;体验,体验;实时,秒级;实时,分钟级;实时,十分钟;离线,T+1;离线,T+2;";
+        String[] split = str.split(";");
+        Map<String, List<String>> map = new HashMap<>();
+        for (String s : split) {
+            String[] split1 = s.split(",");
+            map.computeIfAbsent(split1[0], k -> new ArrayList<>()).add(split1[1]);
+        }
+        JSONArray jsonArray = new JSONArray();
+        map.forEach((k, v) -> {
+            JSONObject object = new JSONObject();
+            object.put("label", k);
+
+            JSONArray children = new JSONArray();
+            for (String c : v) {
+                JSONObject obj = new JSONObject();
+                obj.put("label", c);
+                obj.put("children", new JSONArray());
+                children.add(obj);
+            }
+            object.put("children", children);
+            jsonArray.add(object);
+        });
+        System.out.println(jsonArray);
+
         long diffTime = -1000;
         int diffDay = (int) (diffTime / (24 * 60 * 60 * 1000) + 1);
         List<Integer> remindDays = Arrays.asList(30, 25, 20, 15, 10, 5, 4, 3, 2, 1);
