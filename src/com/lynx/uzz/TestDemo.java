@@ -3,13 +3,16 @@ package com.lynx.uzz;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +26,66 @@ import java.util.stream.Collectors;
  * @date 2023/4/13 17:14
  */
 public class TestDemo {
+
+    @Test
+    public void testExpression() {
+        String[] expression = new String[]{"(", "A", "&&", "B", ")", "||", "(", "C", "&&", "D", ")"};
+        String[] suffixExpression = convertToSuffixExpression(expression);
+        System.out.println(JSON.toJSONString(suffixExpression));
+    }
+
+    /**
+     * 中缀表达式转为后缀表达式
+     */
+    private String[] convertToSuffixExpression(String[] expression) {
+        int size = expression.length;
+        String[] res = new String[size];
+        int cur = 0;
+
+        Deque<String> stack = new ArrayDeque<>();
+
+        for (String ele : expression) {
+            if (StringUtils.equals(ele, "(")) {
+                stack.push(ele);
+            } else if (StringUtils.equals(ele, ")")) {
+                while (!StringUtils.equals(stack.peek(), "(")) {
+                    res[cur++] = stack.pop();
+                }
+                // 移除"("
+                stack.pop();
+            } else if (isOperator(ele)) {
+                // 操作符
+                while (!stack.isEmpty() && getOrder(stack.peek()) >= getOrder(ele)) {
+                    res[cur++] = stack.pop();
+                }
+                stack.push(ele);
+            } else {
+                // 普通元素
+                res[cur++] = ele;
+            }
+        }
+        while (!stack.isEmpty()) {
+            res[cur++] = stack.pop();
+        }
+        return res;
+    }
+
+    /**
+     * 获取优先级
+     */
+    private int getOrder(String ele) {
+        if (StringUtils.equalsAny(ele, "&&", "||")) {
+            return 1;
+        }
+        return 0;
+    }
+
+    /**
+     * 判断是否为操作符
+     */
+    private boolean isOperator(String ele) {
+        return StringUtils.equalsAny(ele, "&&", "||");
+    }
 
     @Test
     public void testSplit() {
